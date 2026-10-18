@@ -1,0 +1,27 @@
+# QLoRA SFT 超参（与 run.py 中 TrainingArguments 默认值一致）
+# 说明：当前 run.py 直接使用这份默认值；改这里请同步 run.py，后续会抽成 --config 读取。
+
+base_model: Qwen/Qwen2.5-7B-Instruct
+quantization:
+  load_in_4bit: true
+  bnb_4bit_quant_type: nf4
+  bnb_4bit_compute_dtype: bfloat16
+  bnb_4bit_use_double_quant: true
+
+lora:
+  r: 16
+  lora_alpha: 32
+  lora_dropout: 0.05
+  target_modules: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+
+train:
+  num_train_epochs: 3
+  per_device_train_batch_size: 2
+  gradient_accumulation_steps: 8
+  learning_rate: 1.0e-4
+  lr_scheduler_type: cosine
+  warmup_ratio: 0.05
+  max_seq_length: 1024
+  bf16: true
+  gradient_checkpointing: true
+  seed: 42

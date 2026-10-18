@@ -1,0 +1,15 @@
+# Python >= 3.10，CUDA 12.x
+# 安装顺序建议：先 torch（按显卡 CUDA 版本选官方 index），再装其余依赖
+
+torch>=2.4,<2.6
+transformers>=4.44,<4.50
+peft>=0.12
+trl>=0.9
+datasets>=2.20
+accelerate>=0.33
+bitsandbytes>=0.43
+modelscope>=1.16        # 国内下载基座权重
+
+# 推理部署（可选，按需安装）
+# vllm>=0.6
+# autoawq>=0.2          # 与新版 torch 易冲突，先跑通 SFT/DPO 再试
